@@ -1,12 +1,15 @@
 <script>
     export let data;
+    let logs = data.logs;
+    console.log(logs);
 </script>
 
 <h1>Logs</h1>
-{#each data.logs.data as log}
-    <div class="flex flex-col items-center justify-center m-2 p-2">
-        <h1 class="text-2xl">{log.name}</h1>
-        <p>{log.message}</p>
-        <footer>{log.created_at}</footer>
-    </div>
+{#each logs.data as log}
+<div class="m-2 p-2">
+    <p>Time: {log.timestamp}</p>
+    <p>Worker: {log.worker}</p>
+    <p>Component: {log.component}</p>
+    <p>{log.log}</p>
+</div>
 {/each}

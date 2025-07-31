@@ -1,6 +1,6 @@
 import { VITE_SERVER_HOST } from '$env/static/private';
 
-export const load = async ({ url }) => {
+export const load = async () => {
     const now = Date.now();
 
     console.log(`Fetching logs from ${VITE_SERVER_HOST}/logs/${now}`)

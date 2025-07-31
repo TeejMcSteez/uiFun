@@ -2,7 +2,7 @@
     export let data;
     let logs = data.logs;
     let date = data.selectedDate;
-    let newDate = null;
+    let newDate = "";
 
     const submitDate = async () => {
         const res = await fetch("/logs/api/submit-date", {
@@ -15,6 +15,13 @@
         const jsonData = await res.json();
 
         console.log(jsonData);
+
+        if (jsonData) {
+            console.log("No JSON on return");
+        } else {
+            logs = jsonData.logs;
+            selectedDate = jsonData.selectedDate;
+        }
     }
 
     console.log(logs);

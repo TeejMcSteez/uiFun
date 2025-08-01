@@ -5,12 +5,15 @@
     let newDate = "";
 
     const submitDate = async () => {
+        const [year, month, day] = newDate.split("-").map(Number);
+        const utcMs = Date.UTC(year, month - 1, day);
+
         const res = await fetch("/logs/api/submit-date", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newDate),
+            body: JSON.stringify(utcMs),
         });
         const jsonData = await res.json();
 
@@ -20,7 +23,7 @@
             console.log("No JSON on return");
         } else {
             logs = jsonData.logs;
-            selectedDate = jsonData.selectedDate;
+            date = jsonData.selectedDate;
         }
     }
 

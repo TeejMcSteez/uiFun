@@ -5,10 +5,8 @@ export async function POST({ request }) {
     const date = await request.json();
 
     console.log(`Recieved date: ${date}`);
-    const seconds = new Date(date).toUTCString();
-    console.log(`UTC Time: ${seconds}`);
 
-    const res = await fetch(`${VITE_SERVER_HOST}/logs/${seconds}`);
+    const res = await fetch(`${VITE_SERVER_HOST}/logs/${date}`);
 
     if (!res.ok) {
         return json({
@@ -21,6 +19,6 @@ export async function POST({ request }) {
 
     return json({
         logs,
-        selectedDate: new Date(seconds).toISOString().split('T')[0]
+        selectedDate: new Date(date).toISOString().split('T')[0]
     });
 }
